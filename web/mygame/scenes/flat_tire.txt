@@ -1,0 +1,4 @@
+Damn, you got a flat tire.
+
+*page_break
+*goto_scene death

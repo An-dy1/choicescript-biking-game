@@ -1,0 +1,20 @@
+This is a stats screen!
+
+*stat_chart
+  text weather
+  opposed_pair physical_health
+    stress
+  opposed_pair mental_health
+    risk
+  percent job_satisfaction
+  percent climate_friendliness
+  text distance_remaining
+  text time_remaining
+
+
+*comment *stat_chart
+*comment   percent Leadership
+*comment   opposed_pair Strength
+*comment     Weakness
+*comment   text Leadership
+*comment   text Strength

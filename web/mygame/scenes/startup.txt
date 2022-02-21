@@ -1,0 +1,152 @@
+*comment Copyright 2010 by Dan Fabulich.
+*comment 
+*comment Dan Fabulich licenses this file to you under the
+*comment ChoiceScript License, Version 1.0 (the "License"); you may
+*comment not use this file except in compliance with the License. 
+*comment You may obtain a copy of the License at
+*comment 
+*comment  http://www.choiceofgames.com/LICENSE-1.0.txt
+*comment 
+*comment See the License for the specific language governing
+*comment permissions and limitations under the License.
+*comment 
+*comment Unless required by applicable law or agreed to in writing,
+*comment software distributed under the License is distributed on an
+*comment "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+*comment either express or implied.
+
+*title My Biking in KC game
+*author Andie from KC
+*scene_list
+  startup
+  rat_alley
+  death
+
+*create distance_remaining 7
+*create time_remaining 60
+*create stress 50
+*create physical_health 50
+*create mental_health 50
+*create job_satisfaction 25
+*create climate_friendliness 25
+*create risk 50
+
+*create weather ""
+*create name ""
+*create job ""
+
+*create weather_code 0
+
+Welcome to a choose your own Kansas City biking adventure game!
+
+This game is boring: your task is to get to work. Sounds simple, right? 
+
+*temp weather_die
+*rand weather_die 1 6
+*set weather_code weather_die
+
+*page_break
+
+You wake up - a bad dream startled you. You blink. It's…light out side.
+
+Shit!
+
+You look at the time - it's 7 a.m. You were supposed to be awake 30 minutes ago. And of all days, of course you forgot to set an alarm on the day of the big pitch.
+
+You grab your phone and the first thing you check is the weather.
+
+*if(weather_die=1)
+  *set weather "sunny and hot"
+  *goto weather_report
+*elseif(weather_die=2)
+  *set weather "drizzly and cool"
+  *goto weather_report
+*elseif(weather_die=3)
+  *set weather "humid, humid, humid"
+  *goto weather_report
+*elseif(weather_die=4)
+  *set weather "raining"
+  *goto weather_report
+*elseif(weather_die=5)
+  *set weather "light snow and bitter cold"
+  *goto weather_report
+*else
+  *set weather "windy and warm"
+  *goto weather_report
+
+*label weather_report
+*page_break
+Oh, great. You see that today it's going to be ${weather}.
+
+You'd planned on having enough time this morning to take your time: do some sun salutations; play Wordle; and French press your coffee. You'll have to skip all that and just get dressed instead.
+*if((weather_die=1) or (weather_die=3)) or (weather_die=6)
+  *goto warm_weather_clothes
+*else
+  *goto cold_weather_clothes
+
+*page_break
+*label warm_weather_clothes
+Still groggy, you pull open your closet and start to weigh your options. You push aside the cold weather biking gear
+and are left with just a couple of options.
+
+*page_break
+The easiest choice: just wear your work clothes. The marketing agency you work for, BBGCY, is casual. You can get away with a light shirt and some utility pants. It'll save you some time on the commute, it's comfortable, and you won't have to change at work.
+
+On the other hand: you could pull on your high vis get-up. You've got a t-shirt in construction-worker orange and some biking shorts with reflectors on it. It'll be daylight soon, but who knows when you might be biking home tonight…
+*choice
+  #Put on your work clothes
+    *set risk %+ 15
+    *finish
+  #Pull on the high-vis 
+    *set risk %- 15
+    *finish
+
+*page_break
+*label cold_weather_clothes
+Still groggy, you pull open your closet and start to weigh your options. You push aside the warm weather biking gear and are left with just a couple of options.
+
+*page_break
+The easiest choice: throw your rain jacket over your work clothes. The marketing agency you work for, BBGCY, is casual. You can get away with a comfortable long-sleeved shirt and some utility pants. It'll save you some time on the commute, it's comfortable, and you won't have to change at work. Plus, it's a fashionable rain jacket. But, it's black, so it might be harder to see today.
+
+On the other hand: your mother got you a high-vis construction worker's get-up for Christmas. It's heavy duty and will definitely be visible today. But, it's bulky and awkward, and you're already running a little late…
+*choice
+  #Put on your work clothes
+    *set risk %+ 15
+    *finish
+  #Pull on the high-vis
+    *set risk %- 15 
+    *finish
+
+
+*comment *choice
+*comment   #Make pre-emptive war on the western lands.
+*comment     If you can seize their territory, your kingdom will flourish.  But your army's
+*comment     morale is low and the kingdom's armory is empty.  How will you win the war?
+*comment     *choice
+*comment       #Drive the peasants like slaves; if we work hard enough, we'll win.
+*comment         Unfortunately, morale doesn't work like that.  Your army soon turns against you
+*comment         and the kingdom falls to the western barbarians.
+*comment         *finish
+*comment       #Appoint charismatic knights and give them land, peasants, and resources.
+*comment         Your majesty's people are eminently resourceful.  Your knights win the day,
+*comment         but take care: they may soon demand a convention of parliament.
+*comment         *finish
+*comment       #Steal food and weapons from the enemy in the dead of night.
+*comment         A cunning plan.  Soon your army is a match for the westerners; they choose
+*comment         not to invade for now, but how long can your majesty postpone the inevitable?
+*comment         *finish
+*comment   #Beat swords to plowshares and trade food to the westerners for protection.
+*comment     The westerners have you at the point of a sword.  They demand unfair terms
+*comment     from you.
+*comment     *choice
+*comment       #Accept the terms for now.
+*comment         Eventually, the barbarian westerners conquer you anyway, destroying their
+*comment         bread basket, and the entire region starves.
+*comment         *finish
+*comment       #Threaten to salt our fields if they don't offer better terms.
+*comment         They blink.  Your majesty gets a fair price for wheat.
+*comment         *finish
+*comment   #Abdicate the throne. I have clearly mismanaged this kingdom!
+*comment     The kingdom descends into chaos, but you manage to escape with your own hide.
+*comment     Perhaps in time you can return to restore order to this fair land.
+*comment     *finish
